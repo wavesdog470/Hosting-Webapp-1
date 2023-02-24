@@ -1,0 +1,101 @@
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1 class="profile-setup-banner">
+                Create your profile~!
+            </h1>
+            <!-- displays a few text boxes where the user can write their informatin -->
+            <div>
+                <input type="text1" 
+                name="buis_Name"
+                #box1
+                (keyup)="setBuisName(box1.value)" 
+                maxlength="20" 
+                minlength="1" 
+                placeholder="Company Name">
+            </div>
+            <div>Company name is: {{buisness.buisnessName}}</div>
+            <br>
+            <div class="Address">
+                <input type="text2" 
+                name="buis_Address"
+                #box2
+                (keyup)="setBuisAddy(box2.value)"
+                placeholder="Address">
+            </div>
+
+            <div>Company address is: {{buisness.buisnessAddress}}</div>
+            
+            <br>
+            <div>
+                <textarea 
+                class="textarea-inline-control" 
+                placeholder="Breif Company Description" 
+                name="buis_Description"
+                #box3
+                (keyup)="setBuisDesc(box3.value)"
+                rows="7" 
+                cols="41"
+                maxlength="300"></textarea>
+            </div>
+
+            <div>Company Description is: {{buisness.buisnessDescription}}</div>
+
+            <br>
+
+            <ng-multiselect-dropdown
+                    [placeholder]="'Select up to 5 tags!'"
+                    [settings]="dropdownSettings"
+                    [data]="dropdownList"
+                    >
+        </ng-multiselect-dropdown>
+        <br>
+
+        </div>
+
+        <div class="col-6">
+            <div>
+                <div class="dropzone">
+                    <!-- explaining the user how to browse files -->
+                    <div class="text-wrapper">
+                        <div class="text-center">
+                            <a (click)="selectFile.click()" class="browse-button">Browse</a>
+                            and select up to 8 images!
+                        </div>
+                    </div>
+                </div>
+                <!-- when a file is selected, it gets added to the array of urls -->
+                <div>
+                    <input type="file" multiple style="display: none;" value="select" #selectFile
+                        (change)="onFileSelected($event)">
+                </div>
+                
+                
+                <!-- displays the url images in a grid formaiton -->
+                <div class="mt-5">
+                    <div class="row">
+                        <mat-grid-list cols="4" rowHeight="1:1">
+                            <mat-grid-tile *ngFor="let file of buisness.buisnessImages; let i = index;">
+                                <div style="position: relative">
+                                    <!-- user can click on an x to remove the file -->
+                                    <span class="remove-button-image" (click)="removeImage(i)">x</span>
+                                    <img [src]="file.url" width="95%" height="95%">
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button 
+    class="submit_button"
+    (click)="sendData()"
+    name="sumbit_data">
+    Submit~!</button>
+</div>
+<!-- TODO:
+    -multiselect drop down for buisness type/ product tags
+    -have the users input data saved to send to the backend
+ -->

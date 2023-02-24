@@ -1,0 +1,31 @@
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<div class="container">
+    <div [hidden]="submitted" class="main">
+        <h1 class="sign">Register</h1>
+        <form (ngSubmit)="onSubmit()" class="form1">
+            <div class="form-group">
+                <input type="email" placeholder="Enter Email" class="email" id="email" required
+                    [(ngModel)]="user.email" #name="ngModel">
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                        Email is invalid
+                    </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" placeholder="Enter Username" class="un" id="username" required
+                    [(ngModel)]="user.username" #name="ngModel">
+                
+            </div>
+            <div class="form-group">
+                <input type="text" class="pass" id="Password" required [(ngModel)]="user.password"
+                    placeholder="Enter Password" #name="ngModel">
+                
+            </div>
+            <button class="submit" type = "submit">Sign in</button>
+            <!--Make the hrefs on these 2 links to the other pages-->
+            <p class="forgot"><a href="#">Login</a></p>
+        </form>
+    </div>
+</div>
